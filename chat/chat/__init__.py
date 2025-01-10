@@ -12,7 +12,7 @@ r = redis.Redis(host=redis_host, port=6379, password=redis_pass, db=0)
 @app.get("/")
 def read_root():
     try:
-        r.set("foo", "bar")
+        r.set("foo", "baz")
         result = r.get("foo")
         print(result)
         return result
