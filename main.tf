@@ -38,7 +38,7 @@ locals {
       }
     },
     "talos-worker" = {
-      mem = 2048
+      mem = 3072
       cores = 2
       disk = {
         image = proxmox_virtual_environment_file.talos_image.id
