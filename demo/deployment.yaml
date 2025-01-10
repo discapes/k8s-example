@@ -36,5 +36,10 @@ spec:
         env:
         - name: REDIS_HOST
           value: redis-replicas
+        - name: REDIS_PASS
+          valueFrom:
+            secretKeyRef:
+              name: redis-pass
+              key: redis-password
         ports:
         - containerPort: 80
