@@ -6,7 +6,7 @@ metadata:
     app: demoapp
 spec:
   ports:
-  - port: http-server
+  - port: 80
   selector:
     app: demoapp
 ---
