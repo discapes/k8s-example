@@ -24,6 +24,8 @@ spec:
       labels:
         app: demoapp
     spec:
+      imagePullSecrets:
+      - name: ghcr
       containers:
       - name: demoapp
         image: ghcr.io/discapes/k8s-example:master
