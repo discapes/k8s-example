@@ -34,7 +34,8 @@ spec:
             memory: 100Mi
         env:
         - name: REDIS_HOST
-          value: redis-master # can't write to replica
+          value: redis-master 
+          # can't write to replica
         - name: REDIS_PASS
           valueFrom:
             secretKeyRef:
