@@ -5,7 +5,8 @@ metadata:
   labels:
     app: demoapp
 spec:
-  ports: - port: 80
+  ports: 
+    - port: 80
   selector:
     app: demoapp
 ---
@@ -35,7 +36,7 @@ spec:
         env:
         - name: REDIS_HOST
           value: redis-master 
-          # can't write to replica
+          # cannot write to replica
         - name: REDIS_PASS
           valueFrom:
             secretKeyRef:
