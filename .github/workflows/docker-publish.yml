@@ -73,5 +73,5 @@ jobs:
           git add kustomization.yaml
           cd ..
           git commit -m "set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
-          git push -u origin deployment
+          git push -u origin deployment -f
 
