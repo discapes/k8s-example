@@ -69,9 +69,9 @@ jobs:
           git switch deployment || git switch -c deployment
           git reset --hard master
           cd demo
-          kustomize edit set image "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
+          kustomize edit set image "${{ steps.meta.outputs.tags }}"
           git add kustomization.yaml
           cd ..
-          git commit -m "set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
+          git commit -m "set tag ${{ steps.meta.outputs.tags }}"
           git push -u origin deployment -f
 
