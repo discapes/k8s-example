@@ -69,7 +69,7 @@ jobs:
           git reset --hard master
           cd demo
           kustomize edit set image "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
-          git add kustomization.yml
+          git add kustomization.yaml
           cd ..
           git commit -m "set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
           git push -u origin deployment
