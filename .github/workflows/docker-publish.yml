@@ -12,7 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      # NEEDED
+      contents: write
       packages: write
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
@@ -65,8 +66,6 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "Actions"
-          # remember to set workflow perms to read-write in repo settings
-          git remote set-url origin "https://token:${{ secrets.GITHUB_TOKEN }}@github.com/discapes/k8s-example"
           git switch deployment || git switch -c deployment
           git reset --hard master
           cd demo
