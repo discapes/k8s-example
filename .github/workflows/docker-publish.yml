@@ -67,7 +67,9 @@ jobs:
           git config --local user.name "Actions"
           git switch deployment || git switch -c deployment
           git reset --hard master
+          cd demo
           kustomize edit set image "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
+          cd ..
           git commit -m "set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
           git push -u origin deployment
 
