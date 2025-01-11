@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Actions"
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
@@ -60,3 +63,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Update kustomization
+        run: |
+          git switch deployment || git switch -c deployment
+          git reset --hard master
+          kustomize edit set image "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
+          git commit -m "set image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
+          git push -u origin deployment
+
