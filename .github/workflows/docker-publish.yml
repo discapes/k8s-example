@@ -21,9 +21,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "Actions"
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
@@ -66,6 +63,8 @@ jobs:
 
       - name: Update kustomization
         run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Actions"
           git switch deployment || git switch -c deployment
           git reset --hard master
           kustomize edit set image "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}"
