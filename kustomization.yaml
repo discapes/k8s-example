@@ -2,3 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - k8s.yaml
+images:
+- name: ghcr.io/discapes/k8s-example
+  newTag: sha-af4274a
