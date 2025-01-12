@@ -10,6 +10,23 @@ spec:
   selector:
     app: demoapp
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demoapp
+spec:
+  rules:
+    - host: demoapp.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: demoapp
+                port:
+                  number: 80
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
