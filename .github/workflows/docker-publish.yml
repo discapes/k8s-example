@@ -55,7 +55,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
-          context: chat
+          context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -68,10 +68,8 @@ jobs:
           git config --local user.name "Actions"
           git switch deployment || git switch -c deployment
           git reset --hard master
-          cd demo
           kustomize edit set image "${{ steps.meta.outputs.tags }}"
           git add kustomization.yaml
-          cd ..
           git commit -m "set tag ${{ steps.meta.outputs.tags }}"
           git push -u origin deployment -f
 

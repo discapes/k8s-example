@@ -13,6 +13,6 @@ FROM python:3.12-slim as runtime
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
-COPY chat ./chat
+COPY demoapp ./demoapp
 
-CMD ["fastapi", "run", "chat", "--port", "80"]
+CMD ["fastapi", "run", "demoapp", "--port", "80"]
